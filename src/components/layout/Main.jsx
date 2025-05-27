@@ -17,7 +17,7 @@ moviesData.forEach(movie => {
 
 
 
-const initialAddMovieData = {
+const initialNewMovieData = {
     title: "",
     genre: ""
 }
@@ -30,7 +30,7 @@ export default function Main () {
     const [filteredMovies, setFilteredMovies] = useState(movies);
     const [filteredGenre, setFilteredGenre] = useState("all");
     const [filteredTitle, setFilteredTitle] = useState("");
-    const [newMovieData, setNewMovieData] = useState(initialAddMovieData);
+    const [newMovieData, setNewMovieData] = useState(initialNewMovieData);
 
 
 
@@ -45,7 +45,7 @@ export default function Main () {
 
 
 
-    const handleMovieDataChange = (e) =>{
+    const handleNewMovieDataChange = (e) =>{
         setNewMovieData({
             ...newMovieData,
             [e.target.name]: e.target.value
@@ -58,7 +58,7 @@ export default function Main () {
         if (newMovieData.title === "") return alert('Il nuovo film deve avere un titolo');
         
         setMovies([ ...movies, newMovieData]);
-        setNewMovieData(initialAddMovieData);
+        setNewMovieData(initialNewMovieData);
     }
 
     
@@ -78,15 +78,15 @@ export default function Main () {
                     handleChange={(e) => {setFilteredTitle(e.target.value)}}
                 />
 
-                <MoviesList 
-                    movies={filteredMovies} 
-                />
-
                 <AddMovie 
                     genres={genres}
                     handleSubmit={handleAddNewMovieSubmit}
-                    handleInputChange={handleMovieDataChange}
+                    handleInputChange={handleNewMovieDataChange}
                     movieData={newMovieData}
+                />
+
+                <MoviesList 
+                    movies={filteredMovies} 
                 />
 
             </div>

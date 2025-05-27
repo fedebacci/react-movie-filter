@@ -1,9 +1,11 @@
 export default function AddMovie ({ genres, handleSubmit, handleInputChange, movieData }) {
     return (
-        <div className="card shadow p-3 my-5">
+        <div className="card shadow p-3 my-3">
             <div className="row">
                 <div className="col-12">
-                    <h2>Aggiungi un film alla lista</h2>
+                    <h5 className="mb-3">
+                        Aggiungi un film alla lista
+                    </h5>
                     
                     
 
