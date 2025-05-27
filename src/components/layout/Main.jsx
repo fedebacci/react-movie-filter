@@ -3,6 +3,7 @@ import moviesData from "../../assets/js/data/data"
 
 import MoviesList from "../movies/MoviesList"
 import FilterBySelect from "../ui/FilterBySelect";
+import FilterByInput from "../ui/FilterByInput";
 
 
 
@@ -21,17 +22,30 @@ export default function Main () {
     // console.debug(moviesData);
     const [filteredMovies, setFilteredMovies] = useState(moviesData);
     const [filteredGenre, setFilteredGenre] = useState("all");
+    const [filteredTitle, setFilteredTitle] = useState("");
     // console.warn(filteredMovies);
     // console.debug(filteredGenre);
 
-    useEffect(() => {
-        if (filteredGenre === "all") return setFilteredMovies(moviesData);
 
-        const newFilteredMovies = moviesData.filter(movie => movie.genre === filteredGenre);
-        // console.debug(filteredMovies);
+
+
+    useEffect(() => {
+        // console.warn("filteredGenre", filteredGenre);
+        // console.warn("filteredTitle", filteredTitle);
+
+        if (filteredGenre === "all" && filteredTitle === "" ) return setFilteredMovies(moviesData);
+
+        let newFilteredMovies = moviesData.filter(movie => filteredGenre === "all" ? movie : movie.genre === filteredGenre);
+        // console.debug("newFilteredMovies 1", newFilteredMovies);
+        
+        newFilteredMovies = newFilteredMovies.filter(movie => movie.title.toLowerCase().includes(filteredTitle.toLowerCase()));
+        // console.debug("newFilteredMovies 2", newFilteredMovies);
 
         setFilteredMovies(newFilteredMovies);
-    }, [filteredGenre])
+    }, [filteredGenre, filteredTitle])
+
+
+
 
     return (
         <main>
@@ -43,6 +57,10 @@ export default function Main () {
                     filteredElement={filteredGenre} 
                     handleChange={(e) => {setFilteredGenre(e.target.value)}} 
                     possibleValues={genres}
+                />
+                <FilterByInput 
+                    filteredElement={filteredTitle} 
+                    handleChange={(e) => {setFilteredTitle(e.target.value)}}
                 />
 
 
