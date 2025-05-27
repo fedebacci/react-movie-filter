@@ -46,9 +46,6 @@ export default function Main () {
 
 
     const handleMovieDataChange = (e) =>{
-        // console.debug("newMovieData", newMovieData);
-        // console.debug("e.target.name", e.target.name);
-        // console.debug("e.target.value", e.target.value);
         setNewMovieData({
             ...newMovieData,
             [e.target.name]: e.target.value
@@ -56,19 +53,11 @@ export default function Main () {
     }
     const handleAddNewMovieSubmit = (e) => {
         e.preventDefault();
-        // console.log("e.target", e.target);
-        // console.log("e.target.value", e.target.value);
-        // console.log("newMovieData", newMovieData);
 
         newMovieData.genre = newMovieData.genre === "" ? genres[0] : newMovieData.genre;
-
-        if (newMovieData.title === "" || newMovieData.genre === "") return alert('Il nuovo film deve avere sia un titolo che un genere');
+        if (newMovieData.title === "") return alert('Il nuovo film deve avere un titolo');
         
         setMovies([ ...movies, newMovieData]);
-        // console.log(movies);
-        // setFilteredMovies(movies);
-        // console.log(filteredMovies);
-
         setNewMovieData(initialAddMovieData);
     }
 
