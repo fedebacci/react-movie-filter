@@ -67,16 +67,21 @@ export default function Main () {
         <main>
             <div className="container">
 
-                <FilterBySelect 
-                    filteredElement={filteredGenre} 
-                    handleChange={(e) => {setFilteredGenre(e.target.value)}} 
-                    possibleValues={genres}
-                />
-
-                <FilterByInput 
-                    filteredElement={filteredTitle} 
-                    handleChange={(e) => {setFilteredTitle(e.target.value)}}
-                />
+                <div className="row">
+                    <div className="col-12 col-md-6">
+                        <FilterBySelect
+                            filteredElement={filteredGenre}
+                            handleChange={(e) => {setFilteredGenre(e.target.value)}}
+                            possibleValues={genres}
+                        />
+                    </div>
+                    <div className="col-12 col-md-6">
+                        <FilterByInput
+                            filteredElement={filteredTitle}
+                            handleChange={(e) => {setFilteredTitle(e.target.value)}}
+                        />
+                    </div>
+                </div>
 
                 <AddMovie 
                     genres={genres}
